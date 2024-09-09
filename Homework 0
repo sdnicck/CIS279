@@ -1,51 +1,72 @@
 package parking;
 
-import java.util.Scanner;
+// scanner imported for inputting data
 
+import java.util.Scanner;
+import java.lang.Math;
+
+//declaring and setting up class Parking Garage for determining how many hours people parked and the parking ticket price
 public class ParkingGarage {
-	
+	//setting up the main function for the class
 	public static void main(String[] args) {
 		
 		Scanner parkTicket = new Scanner(System.in);
 		
+		// Initializing variables 
 		double totalTicketPrice = 0;
 		double ticketPrice = 0;
+		float totalTimeParked = 0;
 		int totalTimeInterval = 0;
 		
-		System.out.println("Please enter the day of the week: ");
+		// prompting the user to enter a day to determine the price rate of the ticket
+		System.out.println("Please enter the first three letters of the day of the week: ");
 		String dayOfWeek = parkTicket.nextLine();
-		System.out.println(dayOfWeek);
 		
+		//depending on the day of the week, the rate per 15 minutes changes
 		if (dayOfWeek.equalsIgnoreCase("mon") || dayOfWeek.equalsIgnoreCase("tue") || dayOfWeek.equalsIgnoreCase("wed")|| dayOfWeek.equalsIgnoreCase("thu")|| (dayOfWeek.equalsIgnoreCase("fri"))) {
 			ticketPrice = 1.25;
-			System.out.println(ticketPrice);
 		} if ((dayOfWeek.equalsIgnoreCase("sat") || (dayOfWeek.equalsIgnoreCase("sun")))) {
 			ticketPrice = 0.5;
-			System.out.println(ticketPrice);
 		}
 		
+		//prompting the user to enter in what time they arrived and what time they left 
 		System.out.println("Please enter time parked (out of 2400): ");
 		int timeEnter = parkTicket.nextInt();
-		int timeEnterLeftover = timeEnter % 100;
-		int timeEnterHour = timeEnter - timeEnterLeftover;
-		int totalEnterTime = ((timeEnterHour/100) *60) + timeEnterLeftover;
-		System.out.println(totalEnterTime);
 		
 		System.out.println("Please enter time left (out of 2400): ");
 		int timeLeft = parkTicket.nextInt();
-		int timeLeftLeftover = timeLeft % 100;
-		int timeLeftHour = timeLeft - timeLeftLeftover;
-		int totalLeftTime = ((timeLeftHour/100) *60) + timeLeftLeftover;
-		System.out.println(totalLeftTime);
 		
-		totalTimeInterval = (totalLeftTime - totalEnterTime)/15;
-		System.out.println(totalTimeInterval);
+		// converting the military time to minutes finding out how many minutes they were parked
+		float timeEnterLeftover = timeEnter % 100;
+		float timeEnterHour = timeEnter - timeEnterLeftover;
+		float totalEnterTime = ((timeEnterHour/100) *60) + timeEnterLeftover;
 		
-		double decTotalTime = totalTimeInterval;
+		float timeLeftLeftover = timeLeft % 100;
+		float timeLeftHour = timeLeft - timeLeftLeftover;
+		float totalLeftTime = ((timeLeftHour/100) *60) + timeLeftLeftover;
 		
-		totalTicketPrice = ticketPrice * decTotalTime;
+		//finding out how many minutes they were parked
+		totalTimeParked = (totalLeftTime - totalEnterTime)/15;
+		totalTimeInterval = Math.round(totalTimeParked);
+		System.out.println(totalLeftTime - totalEnterTime);
 		
-		System.out.println(totalTicketPrice);
+		//returning the day of week to the user
+		System.out.println("Day of Week: "+ dayOfWeek);		
+		
+		totalTicketPrice = ticketPrice * totalTimeInterval;
+		
+		String minuteParking = String.format("%.0f", totalLeftTime-totalEnterTime);
+		
+		String parkingPrice = String.format("%.2f", totalTicketPrice);
+		
+		System.out.println("Parking duration in minutes: "+minuteParking+ " rate: "+ticketPrice);
+				
+		if (totalTicketPrice < 15) {
+			System.out.println("Amount charged $" +  parkingPrice);
+		} 
+		if (totalTicketPrice >= 15) {
+			System.out.println("Amount charged $" + 15);
+		}
 
 	}	
 }
