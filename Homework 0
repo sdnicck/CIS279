@@ -1,0 +1,51 @@
+package parking;
+
+import java.util.Scanner;
+
+public class ParkingGarage {
+	
+	public static void main(String[] args) {
+		
+		Scanner parkTicket = new Scanner(System.in);
+		
+		double totalTicketPrice = 0;
+		double ticketPrice = 0;
+		int totalTimeInterval = 0;
+		
+		System.out.println("Please enter the day of the week: ");
+		String dayOfWeek = parkTicket.nextLine();
+		System.out.println(dayOfWeek);
+		
+		if (dayOfWeek.equalsIgnoreCase("mon") || dayOfWeek.equalsIgnoreCase("tue") || dayOfWeek.equalsIgnoreCase("wed")|| dayOfWeek.equalsIgnoreCase("thu")|| (dayOfWeek.equalsIgnoreCase("fri"))) {
+			ticketPrice = 1.25;
+			System.out.println(ticketPrice);
+		} if ((dayOfWeek.equalsIgnoreCase("sat") || (dayOfWeek.equalsIgnoreCase("sun")))) {
+			ticketPrice = 0.5;
+			System.out.println(ticketPrice);
+		}
+		
+		System.out.println("Please enter time parked (out of 2400): ");
+		int timeEnter = parkTicket.nextInt();
+		int timeEnterLeftover = timeEnter % 100;
+		int timeEnterHour = timeEnter - timeEnterLeftover;
+		int totalEnterTime = ((timeEnterHour/100) *60) + timeEnterLeftover;
+		System.out.println(totalEnterTime);
+		
+		System.out.println("Please enter time left (out of 2400): ");
+		int timeLeft = parkTicket.nextInt();
+		int timeLeftLeftover = timeLeft % 100;
+		int timeLeftHour = timeLeft - timeLeftLeftover;
+		int totalLeftTime = ((timeLeftHour/100) *60) + timeLeftLeftover;
+		System.out.println(totalLeftTime);
+		
+		totalTimeInterval = (totalLeftTime - totalEnterTime)/15;
+		System.out.println(totalTimeInterval);
+		
+		double decTotalTime = totalTimeInterval;
+		
+		totalTicketPrice = ticketPrice * decTotalTime;
+		
+		System.out.println(totalTicketPrice);
+
+	}	
+}
