@@ -15,6 +15,7 @@ public class SelectingClass {
 		newClass.setCRN(CRN);
 		
 		System.out.println("Please enter the department code (eg CIS): ");
+		courseSection.nextLine();
 		String departCode = courseSection.nextLine();
 		newClass.setDepartCode(departCode);
 		
@@ -23,6 +24,7 @@ public class SelectingClass {
 		newClass.setCourseNum(courseNum);
 		
 		System.out.println("Please enter the instructional mode ('online','in-person' or 'hybrid'): ");
+		courseSection.nextLine();
 		String instructMode = courseSection.nextLine();
 		newClass.setInstructMode(instructMode);
 		
