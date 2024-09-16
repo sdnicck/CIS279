@@ -1,7 +1,14 @@
+//Satya Dulam
+//CIS 279: Homework 1 (ClassSection class)
+//Sept 15, 2024
+
+// both the class ClassSection and driver program Selecting Class are under package pimaClass
 package pimaClass;
 
+// class is defined  
 class ClassSection {
 	
+		// intalizing parameters under private with approraite  int or string data types 
 		private int CRN;
 		private int courseNum;
 		private String departCode;
@@ -11,7 +18,8 @@ class ClassSection {
 		private int classCap;
 		private int classEnroll;
 		private int idNum;
-				
+		
+		// creating a setter and getter for variable CRN
 		public void setCRN(int a) {
 			this.CRN=a;
 		}
@@ -20,6 +28,7 @@ class ClassSection {
 			return CRN;
 		}
 		
+		// creating a setter and getter for variable courseNum
 		public void setCourseNum(int b) {
 			this.courseNum=b;
 		}
@@ -28,6 +37,7 @@ class ClassSection {
 			return courseNum;
 		}
 		
+		//creating a setter and getter for variable departCode
 		public void setDepartCode(String c) {
 			this.departCode=c;
 		}
@@ -36,11 +46,13 @@ class ClassSection {
 			return departCode.toString();
 		}
 		
+		//creating a setter and getter for variable instructMode
+		// the setter only allows the user to enter in(-)person, online or hybrid
 		public void setInstructMode(String d) {
-			if ((d.equalsIgnoreCase("in person"))||(d.equalsIgnoreCase("in-person"))|| (d.equalsIgnoreCase("online"))||(d.equalsIgnoreCase("hydrid"))) {
+			if (d.equalsIgnoreCase("in person")||d.equalsIgnoreCase("in-person")|| d.equalsIgnoreCase("online")||d.equalsIgnoreCase("hydrid")) {
 				this.instructMode = d;
 			} else {
-			this.instructMode= "unknown instructional mode";
+				this.instructMode= "unknown instructional mode";
 			}
 		}
 		
@@ -48,8 +60,10 @@ class ClassSection {
 			return instructMode.toString();
 		}
 		
+		// creating a setter and getter for variable meetDays
+		// the program will only set the value if the variable instruct mode is equal to in(-)person or hybrid 
 		public void setMeetDays(String e) {
-			if ((instructMode.equalsIgnoreCase("in person"))||(instructMode.equalsIgnoreCase("in-person"))||(instructMode.equalsIgnoreCase("hybrid"))) {
+			if (instructMode.equalsIgnoreCase("in person")||instructMode.equalsIgnoreCase("in-person")||instructMode.equalsIgnoreCase("hybrid")) {
 				this.meetDays= e;
 			} else {
 				this.meetDays = "N/A";
@@ -60,11 +74,13 @@ class ClassSection {
 			return meetDays.toString();
 		}
 		
+		// creating a setter and getter for variable meetTimes
+		// the program will only set the value if the variable instructMode is equal to in(-)person or hybrid 
 		public void setMeetTimes(String f) {
 			if ((instructMode.equalsIgnoreCase("in person"))||(instructMode.equalsIgnoreCase("in-person"))||(instructMode.equalsIgnoreCase("hybrid"))) {
-			this.meetTimes = f;
+				this.meetTimes = f;
 		} else {
-			this.meetTimes = "N/A";
+				this.meetTimes = "N/A";
 			}
 		}
 		
@@ -72,6 +88,7 @@ class ClassSection {
 			return meetTimes.toString();
 		}
 		
+		//creating a setter and getter for variable classCap
 		public void setClassCap(int g) {
 			this.classCap = g;
 		}
@@ -80,6 +97,7 @@ class ClassSection {
 			return classCap;
 		}
 		
+		// creating a setter and getter for variable classEnroll
 		public void setClassEnroll(int h) {
 			this.classEnroll = h;
 		}
@@ -92,21 +110,23 @@ class ClassSection {
 			this.idNum=i;
 		}
 		
+		// creating a setter and getter for variable idNum
 		public int getIdNum() {
 			return idNum;
 		}
-		public void classDetails(){
 		
-			System.out.println("CRN: "+ Integer.toString(CRN));
-			System.out.println("Instructional mode: "+instructMode.toString());
-			System.out.println("Department: "+departCode.toString());
-			System.out.println("Course number: "+Integer.toString(courseNum));
-			System.out.println("Meeting days"+meetDays.toString());
-			System.out.println("Meeting times: "+ meetTimes.toString());
-			System.out.println("Capacity: "+Integer.toString(classCap));
-			System.out.println("Enrollment: "+Integer.toString(classEnroll));
-			System.out.println("Instructor’s ID: "+ Integer.toString(idNum));
-			
+		//creating a method function toString() that will call all of the getter functions with labels 
+		@Override
+		public String toString(){
+			return "CRN: "+ getCRN()
+			+"\nDepartment: "+ getDepartCode()
+			+"\nCourse number: "+getCourseNum()
+			+"\nInstructional mode: "+getInstructMode()
+			+"\nMeeting days: "+ getMeetDays()
+			+"\nMeeting times: "+ getMeetTimes()
+			+"\nCapacity: "+getClassCap()
+			+"\nEnrollment: "+getClassEnroll()
+			+"\nInstructor’s ID: "+ getIdNum();
 		}
 		
 	}
