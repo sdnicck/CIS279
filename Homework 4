@@ -1,0 +1,154 @@
+//Satya Dulam
+//CIS 279: homework 5
+//Oct 6, 2024
+
+
+//package within the project
+package arrayPractice;
+
+//importing tools to help will program
+import java.util.Arrays;
+import java.util.Random;
+
+//starting main project
+public class Homework_5 {
+
+	//main method for program
+	public static void main(String[] args) {
+		//declaring an array of 10 integers
+		int[] newArray = new int[10];
+		//declaring an variables for the indexes of the highest and lowest values in the array
+		int indexHigh;
+		int highestValue;
+		int indexLow;
+		int lowestValue;
+		// declaring variables for the sum of the values in the array and the average of the array
+		int arraySum;
+		double arrayAverage;
+
+		//calling method assignValues to assign random values between 0 and 100 to the array and then return the array
+		newArray = assignValues(newArray);
+
+		//displaying the original array by converting it into a string using method displayArray
+		System.out.println("Original array: ");
+		displayArray(newArray);
+
+		//finding the index of the highest value in the array using method highValue and the newArray as it's parameter
+		//using the index to set the highest value as a variable
+		indexHigh = highValue(newArray);
+		highestValue = newArray[indexHigh];
+		
+		//finding the index of the lowest value in the array using method lowValue and the newArray as it's parameter
+		//using the index to set the lowest value as a variable
+		indexLow = lowValue(newArray);
+		lowestValue = newArray[indexLow];
+
+		//finding the sum of the array using method sumValue and newArray as the parameter
+		arraySum = sumValue(newArray);
+
+		//finding the average of the array using method averageValue and arraySum and newArray as parameters
+		arrayAverage = averageValue(arraySum, newArray);
+
+		//displaying all of the attributes of the array using method displayValues with all of the previous variables as parameters
+		displayValues(newArray, indexHigh, highestValue, lowestValue, indexLow, arraySum, arrayAverage);
+
+		//sorting the array in ascending order
+		Arrays.sort(newArray);
+
+		//displaying the ordered array by calling method displayArray
+		System.out.println("New sorted array: ");
+		displayArray(newArray);
+
+	}
+
+//all of the methods used and called in the main method
+	
+	//method used to assign random values to an array
+	public static int[] assignValues(int array[]) {
+		///creating new object rand
+		Random rand = new Random();
+
+		//looping through the indexes of the array parameter to assign random values between 0-1000 to each index
+		for (int x = 0; x <= (array.length - 1); x += 1) {
+			array[x] = rand.nextInt(1000);
+			;
+		}
+		//returning the array to the main function
+		return array;
+	}
+
+	//method used for displaying an array
+	public static void displayArray(int array[]) {
+		//the array called in the main function is converted to a string and printed out to the user
+		System.out.println(Arrays.toString(array));
+	}
+
+	//method used to determine the lowest value in the array and it's index
+	public static int lowValue(int array[]) {
+		//initializing an index value that can be returned 
+		int lowIndex = 0;
+		// initializing with a number that can be compared to in the following loop
+		int lowNumber = array[0];
+		// the loop goes through all of the values in the array parameter skipping index 0
+		for (int i = 1; i < array.length; i += 1) {
+			// if the value being compared is lower than the initial value it is replaced as the lowest value
+			if (array[i] < lowNumber) {
+				// the loop tracks the lowest value and it's index
+				lowNumber = array[i];
+				lowIndex = i;
+			}
+		}
+		//once the loop is complete the index with the lowest value is returned to the main function 
+		return lowIndex;
+	}
+
+	public static int highValue(int array[]) {
+		//initializing an index value that can be returned
+		int highIndex = 0;
+		// initializing with a number that can be compared to in the following loop
+		int highNumber = array[0];
+		// the loop goes through all of the values in the array parameter skipping index 0
+		for (int a = 1; a < array.length; a += 1) {
+			// if the value being compared is higher than the initial value it is replaced as the highest value
+			if (array[a] > highNumber) {
+				// the loop tracks the highest value it's index
+				highNumber = array[a];
+				highIndex = a;
+			}
+		}
+		//once the loop is complete the index with the highest value is returned to the main function 
+		return highIndex;
+
+	}
+
+	// method is used for determining the sum of an int array
+	public static int sumValue(int array[]) {
+		//initializing a value that can be returned
+		int sum = 0;
+		// the for loop goes through each of the elements in the array and adds them as it is looping
+		for (int x = 0; x < array.length; x += 1) {
+			sum += array[x];
+		}
+		// the final sum is returned to the main function
+		return sum;
+	}
+
+	// method is used for determine the average of an int array, using the array and it's sum as a parameter
+	public static double averageValue(int previousSum, int array[]) {
+		double average = 0;
+		double arrayLength = array.length;
+		average = previousSum / arrayLength;
+		return average;
+	}
+
+	public static void displayValues(int array[], int highIndex, int highValue, int lowIndex, int lowValue, int sum, double average) {
+		System.out.println("The index of the highest value is " + highIndex + " with a value of " + highValue);
+
+		System.out.println("The index of the lowest Value is " + lowIndex + " with a value of " + lowValue);
+
+		System.out.println("The sum of array values is " + sum);
+
+		System.out.println("The average of the array values is " + average);
+	}
+
+}
